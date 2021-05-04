@@ -37,3 +37,13 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Audio folders
+tawny_song
+buzzard_call
+bird_audio
+
+# NES8010.R source
+nes8010.R
+
+
