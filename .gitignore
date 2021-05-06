@@ -41,9 +41,8 @@ vignettes/*.pdf
 # Audio folders
 tawny_song
 buzzard_call
+raven_call
 bird_audio
 
-# NES8010.R source
-nes8010.R
 
 
