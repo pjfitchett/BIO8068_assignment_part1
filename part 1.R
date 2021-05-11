@@ -103,7 +103,7 @@ file.remove(paste0("bird_audio/", unwanted_mp3))
 # Visualise and analyse the songs and calls ####
 
 # Looking at a single bird - start with buzzard ####
-buzzard_call_wav <- readWave("bird_audio/Buteobuteo-call_264996.wav")
+buzzard_call_wav <- readWave("bird_audio/Buteobuteo-call_278716.wav")
 buzzard_call_wav
 
 # Create an oscillogram for the full audio clip
@@ -113,21 +113,22 @@ oscillo(buzzard_call_wav)
 oscillo(buzzard_call_wav, from = 3.59, to = 3.60)
 
 # Create a spectrogram for the same clip
-SpectrogramSingle(sound.file = "bird_audio/Buteobuteo-call_264996.wav",
+SpectrogramSingle(sound.file = "bird_audio/Buteobuteo-call_278716.wav",
                   Colors = "Colors")
 
 # Create a spectrogram with ggplot
 buzz_spec <- ggspectro(buzzard_call_wav, flim=c(0,7)) + # y-axis limits in kHz
   geom_tile(aes(fill=amplitude)) +
-  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-60,0),
+  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-70,0),
                        na.value="transparent",
-                       low="green", mid="yellow", high="red", midpoint = -30)
+                       low="green", mid="yellow", high="red", midpoint = -35)
 buzz_spec
+buzz_spec + theme(text = element_text(size = 16))   
 
 
 
 # Now repeat for tawny owl ####
-tawny_song_wav <- readWave("bird_audio/Strixaluco-song_473154.wav")
+tawny_song_wav <- readWave("bird_audio/Strixaluco-song_407404.wav")
 tawny_song_wav
 
 # Create an oscillogram for the full audio clip
@@ -137,22 +138,22 @@ oscillo(tawny_song_wav)
 oscillo(tawny_song_wav, from = 1.49, to = 1.50)
 
 # Create a spectrogram for the same clip
-SpectrogramSingle(sound.file = "bird_audio/Strixaluco-song_473154.wav",
+SpectrogramSingle(sound.file = "bird_audio/Strixaluco-song_407404.wav",
                   Colors = "Colors")
 
 # Create a spectrogram with ggplot
 tawny_spec <- ggspectro(tawny_song_wav, flim=c(0,6)) + # y-axis limits in kHz
   geom_tile(aes(fill=amplitude)) +
-  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-60,0),
+  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-70,0),
                        na.value="transparent",
-                       low="green", mid="yellow", high="red", midpoint = -30)
+                       low="green", mid="yellow", high="red", midpoint = -35)
 tawny_spec
-
+tawny_spec + theme(text = element_text(size = 16))  
 
 
 
 # Now repeat for raven ####
-raven_call_wav <- readWave("bird_audio/Corvuscorax-call_94437.wav")
+raven_call_wav <- readWave("bird_audio/Corvuscorax-call_639016.wav")
 raven_call_wav
 
 # Create an oscillogram for the full audio clip
@@ -162,17 +163,17 @@ oscillo(raven_call_wav)
 oscillo(raven_call_wav, from = 3.49, to = 3.50)
 
 # Create a spectrogram for the same clip
-SpectrogramSingle(sound.file = "bird_audio/Corvuscorax-call_94437.wav",
+SpectrogramSingle(sound.file = "bird_audio/Corvuscorax-call_639016.wav",
                   Colors = "Colors")
 
 # Create a spectrogram with ggplot
-raven_spec <- ggspectro(raven_call_wav, flim=c(0,2)) + # y-axis limits in kHz
+raven_spec <- ggspectro(raven_call_wav, flim=c(0,6)) + # y-axis limits in kHz
   geom_tile(aes(fill=amplitude)) +
-  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-60,0),
+  scale_fill_gradient2(name="Amplitude\n(dB)\n", limits=c(-70,0),
                        na.value="transparent",
-                       low="green", mid="yellow", high="red", midpoint = -30)
+                       low="green", mid="yellow", high="red", midpoint = -35)
 raven_spec
-
+raven_spec + theme(text = element_text(size = 16))  
 
 
 
@@ -195,7 +196,10 @@ bird_sco <- ordi_scores(bird_pca, display="sites")
 bird_sco <- mutate(bird_sco, group_code = bird_mfcc$Class)
 
 ggplot(bird_sco, aes(x=PC1, y=PC2, colour=group_code)) +
-  geom_point() 
+  geom_point() +
+  scale_colour_discrete(name = "Group",
+                        labels = c("Common buzzard", "Common raven", "Tawny owl"))
+  
 
 
 
