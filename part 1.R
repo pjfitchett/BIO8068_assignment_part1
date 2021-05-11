@@ -14,7 +14,7 @@ source("nes8010.R")
 # warbleR makes it easy to bulk download from the xeno-cato database
 library(warbleR)
 
-# Common buzzard call vs tawny owl song
+# Common buzzard call, tawny owl song and common raven call
 
 # Check how many recordings are available - limited to UK and 5-25 sec recordings ####
 
